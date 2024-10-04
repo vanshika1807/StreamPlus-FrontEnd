@@ -1,0 +1,23 @@
+//if we are using apis for streaming video that is not a good practice to do that
+//why?
+//Because if we request one video and that video is coming in one go because of the api request.
+//this practice  will cause a lot of load on the server itself , also the videos that we using are 
+//--here in the project for testing are very small in size but what if the video is very large then it will cause a lot of issue while loading. 
+//--good for public video of small size , basically we dont want the video to be streamed in one go
+//Good Practice:
+//what we can do is that we can sent the data in bytes range, our browser sends the range of the bytes 
+//--it requires. Then according to that range bytes are calculated and the data is send, so request is coming 
+//--continously from the browser and according to the request data is send in bytes
+//there are varuious problems such as:
+//      (1) Bandwidth Usage ->
+//                 -full file is downloaded
+//                 -poor user experience
+//      (2) Wastage of resources 
+//      (3) Wastage of data
+//      (4) security threats
+//We generally want to send the data that is requested by the user
+// Range : starting byte range - ending byte range , we calculate the the amount of data is to be send by using this range 
+//suppose we open youtube and we click in the middle of the video then this will send a request to the server by sending the range of bytes requires only to load that much part of the video 
+//--essentially this is how streaming works on platforms like YouTube. When you click on a different part of the video timeline, the browser doesn't download the entire video again but rather sends a 
+//--byte-range request to the server. This request specifies the range of data (in bytes) corresponding to the part of the video you want to play. The server responds by delivering only that 
+//--specific portion of the video file, which is part of an HTTP partial content response (206).
